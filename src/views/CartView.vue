@@ -3,7 +3,7 @@
     <h1>This is a cart page</h1>
     <ul>
       <li v-for="(item, index) in cartItems" :key="index">
-        {{ item.name }}
+        {{ `Product: ${item.name} x ${item.quantity}` }}
       </li>
     </ul>
     <p> {{ cartStore.getTotalAmount }} </p>
