@@ -6,9 +6,12 @@
 
 <script setup>
 import ProductItem from './ProductItem.vue'
-const props = defineProps({
-    products: []
-})
+import { computed } from 'vue'
+import { useCartStore } from '../store/cart';
+
+const cartStore = useCartStore();
+const products = computed(() => cartStore.products);
+
 </script>
 
 <style scoped>

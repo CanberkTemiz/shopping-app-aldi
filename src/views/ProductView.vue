@@ -1,14 +1,14 @@
 <template>
     <h1>Products Page</h1>
-    <ProductList :products="products" />
+    <ProductList />
 </template>
 
 <script setup>
 import ProductList from '@/components/ProductList.vue'
-import useProducts from '@/composable/useProducts.js'
+import { useCartStore } from '../store/cart';
 
-const { products, fetchProducts } = useProducts();
+const cartStore = useCartStore();
 
-fetchProducts();
+if (!cartStore.products.length) cartStore.fetchProducts();
 
 </script>
