@@ -45,9 +45,7 @@ const handleAddToCart = () => {
     align-items: center;
 }
 
-.image {
-    width: 100px;
-    height: 135px;
-    overflow: hidden;
+img {
+    height: 150px !important;
 }
 </style>
