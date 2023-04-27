@@ -11,12 +11,14 @@
                 <p>Price: ${{ product.price }}</p>
                 <p>Available: {{ product.availableAmount }}</p>
                 <label for="quantity">Quantity:</label>
-                <input type="number" v-model="quantity" :min="product.minOrderAmount" :max="product.availableAmount" />
+                <input type="text" v-model="quantity" :min="product.minOrderAmount" :max="product.availableAmount"
+                    @input="validateInput(quantity, props.product.availableAmount)" />
+                <p v-if="error">{{ error }}</p>
             </div>
         </div>
 
         <div class="extra content">
-            <button @click="handleAddToCart" class="ui button">
+            <button @click="handleAddToCart" class="ui button" :class="{ 'disabled': error }">
                 Add to Cart
             </button>
         </div>
@@ -26,7 +28,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useCartStore } from '../store/cart';
+import { useInputValidation } from '../composable/useInputValidation'
 
+const { error, validateInput } = useInputValidation()
 const cartStore = useCartStore();
 const props = defineProps({
     product: Object
@@ -35,6 +39,11 @@ const props = defineProps({
 const quantity = ref(props.product.minOrderAmount);
 
 const handleAddToCart = () => {
+    console.log('quantity.value: ', quantity.value, 'availableAmount: ', props.product.availableAmount)
+    if (quantity.value > props.product.availableAmount) {
+        alert('cannot at more than available qantitiy')
+        return;
+    }
     cartStore.addToCart(props.product, quantity.value)
 }
 
