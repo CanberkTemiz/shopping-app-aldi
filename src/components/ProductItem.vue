@@ -1,12 +1,25 @@
 <template>
-    <div class="product-item">
-        <h2>{{ product.name }}</h2>
-        <img :src="product.img" :alt="product.name" />
-        <p>Price: ${{ product.price }}</p>
-        <p>Available: {{ product.availableAmount }}</p>
-        <label for="quantity">Quantity:</label>
-        <input type="number" v-model="quantity" :min="product.minOrderAmount" :max="product.availableAmount" />
-        <button @click="handleAddToCart">Add to Cart</button>
+    <div class="card">
+        <div class="content">
+            <div class="header">{{ product.name }}</div>
+        </div>
+        <div class="image">
+            <img :src="product.img" :alt="product.name" />
+        </div>
+        <div class="content">
+            <div class="description">
+                <p>Price: ${{ product.price }}</p>
+                <p>Available: {{ product.availableAmount }}</p>
+                <label for="quantity">Quantity:</label>
+                <input type="number" v-model="quantity" :min="product.minOrderAmount" :max="product.availableAmount" />
+            </div>
+        </div>
+
+        <div class="extra content">
+            <button @click="handleAddToCart" class="ui button">
+                Add to Cart
+            </button>
+        </div>
     </div>
 </template>
 
@@ -28,15 +41,13 @@ const handleAddToCart = () => {
 </script>
 
 <style scoped>
-.product-item {
-    display: flex;
-    flex-direction: column;
+.card {
     align-items: center;
-    margin: 20px;
 }
 
-img {
+.image {
     width: 100px;
-    height: 100px;
+    height: 135px;
+    overflow: hidden;
 }
 </style>
