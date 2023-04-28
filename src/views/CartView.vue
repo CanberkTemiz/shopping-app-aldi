@@ -1,5 +1,5 @@
 <template>
-  <div class="ui celled list cart">
+  <div class="cart">
     <CartList />
     <span class="p-input-icon-left">
       <i class="pi pi-search" />

@@ -1,5 +1,5 @@
 <template>
-    <div class="ui cards">
+    <div class="product-list">
         <ProductItem v-for="product in products" :key="product.id" :product="product" />
     </div>
 </template>
@@ -14,8 +14,11 @@ const products = computed(() => cartStore.products);
 </script>
 
 <style scoped>
-.ui.cards {
-    margin: 10px;
+.product-list {
+    margin-top: 40px;
+    display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 </style>

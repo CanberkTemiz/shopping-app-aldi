@@ -1,7 +1,4 @@
 <template>
-  <div class="card relative z-2">
-    <Menubar :model="items" />
-  </div>
   <header>
     <div class="ui fluid two item menu">
       <RouterLink class="item active" to="/products">
@@ -19,24 +16,13 @@
 </template>
 
 <script setup>
-import { useRouter, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 import { onMounted, ref } from 'vue';
 import { useCartStore } from './store/cart';
-import Menubar from 'primevue/menubar'
 
 const isActiveTab = ref(true);
-const items = ref([
-  { label: 'Products', to: '/products' },
-  { label: 'Cart', to: '/cart' },
-])
 
-const router = useRouter();
 const cartStore = useCartStore();
-
-const onMenuClick = (e) => {
-  // router.push()
-  console.log('basildi', e)
-}
 
 onMounted(() => {
   isActiveTab.value = !isActiveTab.value

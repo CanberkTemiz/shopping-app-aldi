@@ -1,36 +1,33 @@
 <template>
-    <div class="card">
-        <div class="content">
-            <div class="header">{{ product.name }}</div>
-        </div>
-        <div class="image">
+    <Card class="card" style="width: 25em">
+        <template #header>
             <img :src="product.img" :alt="product.name" />
-        </div>
-        <div class="content">
-            <div class="description">
-                <p>Price: ${{ product.price }}</p>
-                <p>Available: {{ isAvailable ? product.availableAmount : 'Not Available' }}</p>
-                <p>*Min order amount: {{ product.minOrderAmount }}</p>
-                <label for="quantity">Quantity:</label>
-                <input :disabled="!isAvailable" type="text" v-model="quantity" :min="product.minOrderAmount"
-                    :max="product.availableAmount"
-                    @input="validateInput(quantity, props.product.availableAmount, product.minOrderAmount)" />
-                <p v-if="error">{{ error }}</p>
-            </div>
-        </div>
-
-        <div class="extra content">
-            <button @click="handleAddToCart" class="ui button" :class="{ 'disabled': error || !isAvailable }">
-                Add to Cart
-            </button>
-        </div>
-    </div>
+        </template>
+        <template #title>{{ product.name }}</template>
+        <template #subtitle> Card subtitle </template>
+        <template #content>
+            <p>Price: ${{ product.price }}</p>
+            <p>Available: {{ isAvailable ? product.availableAmount : 'Not Available' }}</p>
+            <p>*Min order amount: {{ product.minOrderAmount }}</p>
+            <label for="username">Quantity: </label>
+            <InputText type="text" :disabled="!isAvailable" v-model="quantity" :min="product.minOrderAmount"
+                :max="product.availableAmount" aria-describedby="username-help"
+                @input="validateInput(quantity, props.product.availableAmount, product.minOrderAmount)" />
+        </template>
+        <template #footer>
+            <Button icon="pi pi-check" label="Save" />
+            <Button icon="pi pi-times" label="Cancel" severity="secondary" style="margin-left: 0.5em" />
+        </template>
+    </Card>
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useCartStore } from '../store/cart';
 import { useInputValidation } from '../composable/useInputValidation'
+import Card from 'primevue/card'
+import Button from 'primevue/button'
+import InputText from 'primevue/inputtext'
 
 const { error, validateInput } = useInputValidation()
 const cartStore = useCartStore();
@@ -55,26 +52,12 @@ const isAvailable = computed(() => {
     return false;
 })
 
-// watch(quantity, (newQuantity, oldQuantity) => {
-//     console.log(Number(newQuantity), props.product.availableAmount)
-
-//     if (Number(newQuantity) > props.product.availableAmount) {
-//         quantity.value = props.product.availableAmount
-//     }
-// })
-
-// onUpdated(() => {
-//     console.log('onUpdated');
-    // if (quantity.value > props.product.availableAmount) {
-    //     quantity.value = props.product.availableAmount
-    // }
-// })
-
-
 </script>
 
 <style scoped>
 .card {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
