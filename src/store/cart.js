@@ -4,7 +4,8 @@ export const useCartStore = defineStore({
     id: "cart",
     state: () => ({
       products: [],
-      cart: []
+      cart: [],
+      notification: false,
     }),
     getters: {
         getTotalAmount() {
@@ -24,6 +25,8 @@ export const useCartStore = defineStore({
 
             const foundProduct = this.products.find(p => product.id === p.id)
             foundProduct.availableAmount -= quantity;
+
+            this.notification = true;
         },
         async fetchProducts() {
             const response = await fetch('https://63c10327716562671870f959.mockapi.io/products');
