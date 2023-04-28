@@ -4,7 +4,6 @@ export const useInputValidation = () => {
     const error = ref()
 
     const validateInput = (inputValue, availableAmount) => {
-        console.log('hop');
         error.value = '';
         if(!inputValue.trim()) {
             error.value = 'Input cannot be empty'

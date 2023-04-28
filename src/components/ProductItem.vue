@@ -39,12 +39,7 @@ const props = defineProps({
 const quantity = ref(props.product.minOrderAmount);
 
 const handleAddToCart = () => {
-    console.log('quantity.value: ', quantity.value, 'availableAmount: ', props.product.availableAmount)
-    if (quantity.value > props.product.availableAmount) {
-        alert('cannot at more than available qantitiy')
-        return;
-    }
-    cartStore.addToCart(props.product, quantity.value)
+    cartStore.addToCart(props.product, +quantity.value)
 }
 
 </script>

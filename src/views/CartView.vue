@@ -1,19 +1,19 @@
 <template>
-  <div class="cart">
-    <ul>
-      <li v-for="(item, index) in cartItems" :key="index">
-        {{ `Product: ${item.name} x ${item.quantity}` }}
-      </li>
-    </ul>
-    <p> {{ cartStore.getTotalAmount }} </p>
+  <div class="ui celled list cart">
+    <CartList />
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useCartStore } from '../store/cart';
-
-const cartStore = useCartStore();
-const cartItems = computed(() => cartStore.cart);
+import CartList from '../components/CartList.vue';
 
 </script>
+
+<style scoped>
+.cart {
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
