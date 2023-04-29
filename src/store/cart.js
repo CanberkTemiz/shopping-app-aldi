@@ -20,9 +20,6 @@ export const useCartStore = defineStore({
         }
     },
     actions: {
-        setProducts(products) {
-            this.products = products;
-        },
         addToCart(product, quantity) {
             const foundCartProduct = this.cart.find(p => product.id === p.id)
             
@@ -39,15 +36,17 @@ export const useCartStore = defineStore({
             toast.success('Added to Cart!')
         },
         async fetchProducts() {
-            this.loading = true;
-            try {
-                const response = await fetch('https://63c10327716562671870f959.mockapi.io/products');
-                if(!response) throw new Error('Error fetching data')
-                this.products = await response.json();
-            } catch(err) {
-                this.error = err.message
-            } finally {
-                this.loading = false
+            if (!this.products.length) {
+                this.loading = true;
+                try {
+                    const response = await fetch('https://63c10327716562671870f959.mockapi.io/products');
+                    if(!response) throw new Error('Error fetching data')
+                    this.products = await response.json();
+                } catch(err) {
+                    this.error = err.message
+                } finally {
+                    this.loading = false
+                }
             }
         }
     },

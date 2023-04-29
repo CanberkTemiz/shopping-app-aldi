@@ -12,6 +12,6 @@ import { useCartStore } from '../store/cart';
 
 const cartStore = useCartStore();
 
-if (!cartStore.products.length) cartStore.fetchProducts();
+cartStore.fetchProducts();
 
 </script>

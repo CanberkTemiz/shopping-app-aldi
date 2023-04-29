@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="image">
+        <div class="image" style="background: white">
             <img :src="product.img" :alt="product.name" />
         </div>
         <div class="content">
@@ -88,6 +88,7 @@ const calculateBulkProductPrice = computed(() => {
 <style scoped>
 img {
     height: 250px !important;
+    object-fit: contain;
 }
 
 .quantity-label {
