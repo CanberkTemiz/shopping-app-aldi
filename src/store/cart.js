@@ -6,6 +6,8 @@ export const useCartStore = defineStore({
       products: [],
       cart: [],
       notification: false,
+      loading: false,
+      error: null
     }),
     getters: {
         getTotalAmount() {
@@ -35,8 +37,16 @@ export const useCartStore = defineStore({
             this.notification = true;
         },
         async fetchProducts() {
-            const response = await fetch('https://63c10327716562671870f959.mockapi.io/products');
-            this.products = await response.json();
+            this.loading = true;
+            try {
+                const response = await fetch('https://63c10327716562671870f959.mockapi.io/products');
+                if(!response) throw new Error('Error fetching data')
+                this.products = await response.json();
+            } catch(err) {
+                this.error = err.message
+            } finally {
+                this.loading = false
+            }
         }
     },
   });

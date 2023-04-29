@@ -1,16 +1,13 @@
 <template>
-    <!-- <div v-if="cartStore.notification" class="ui success message">
-        <i class="close icon"></i>
-        <div class="header">
-            Your user registration was successful.
-        </div>
-        <p>You may now log-in with the username you have chosen</p>
-    </div> -->
-    <ProductList />
+    <div v-if="!cartStore.loading">
+        <ProductList />
+    </div>
+    <LoadingSpinner v-else />
 </template>
 
 <script setup>
 import ProductList from '@/components/ProductList.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import { useCartStore } from '../store/cart';
 
 const cartStore = useCartStore();
