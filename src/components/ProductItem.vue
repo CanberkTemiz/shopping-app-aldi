@@ -80,14 +80,14 @@ const isAvailable = computed(() => {
 
 const calculateBulkProductPrice = computed(() => {
     if (error.value) return '-'
-    return Number(quantity.value) * Number(props.product.price)
+    return (Number(quantity.value) * Number(props.product.price)).toFixed(2)
 })
 
 </script>
 
 <style scoped>
 img {
-    height: 150px !important;
+    height: 250px !important;
 }
 
 .quantity-label {

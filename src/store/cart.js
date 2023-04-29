@@ -12,7 +12,7 @@ export const useCartStore = defineStore({
             return this.cart.reduce((acc, product) => {
                 acc += product.price * product.quantity;
                 return acc;
-            }, 0)
+            }, 0).toFixed(2)
         }
     },
     actions: {
@@ -21,7 +21,13 @@ export const useCartStore = defineStore({
         },
         addToCart(product, quantity) {
             const foundCartProduct = this.cart.find(p => product.id === p.id)
-            foundCartProduct ? foundCartProduct.quantity += quantity : this.cart.push({...product, quantity})
+            
+            if(foundCartProduct) {
+                foundCartProduct.quantity += quantity;
+                foundCartProduct.bulkPrice = (foundCartProduct.quantity * product.price).toFixed(2);
+            } else {
+                this.cart.push({...product, quantity, bulkPrice: (quantity * product.price).toFixed(2)})
+            }
 
             const foundProduct = this.products.find(p => product.id === p.id)
             foundProduct.availableAmount -= quantity;
