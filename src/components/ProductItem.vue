@@ -1,33 +1,59 @@
 <template>
-    <Card class="card" style="width: 25em">
-        <template #header>
+    <div class="card">
+        <div class="image">
             <img :src="product.img" :alt="product.name" />
-        </template>
-        <template #title>{{ product.name }}</template>
-        <template #subtitle> Card subtitle </template>
-        <template #content>
-            <p>Price: ${{ product.price }}</p>
-            <p>Available: {{ isAvailable ? product.availableAmount : 'Not Available' }}</p>
-            <p>*Min order amount: {{ product.minOrderAmount }}</p>
-            <label for="username">Quantity: </label>
-            <InputText type="text" :disabled="!isAvailable" v-model="quantity" :min="product.minOrderAmount"
-                :max="product.availableAmount" aria-describedby="username-help"
-                @input="validateInput(quantity, props.product.availableAmount, product.minOrderAmount)" />
-        </template>
-        <template #footer>
-            <Button icon="pi pi-check" label="Save" />
-            <Button icon="pi pi-times" label="Cancel" severity="secondary" style="margin-left: 0.5em" />
-        </template>
-    </Card>
+        </div>
+        <div class="content">
+            <div class="header">{{ product.name }}</div>
+            <h2 class="ui sub header">
+                Price
+            </h2>
+            <span>${{ product.price }}</span>
+            <div class="meta">
+                <p>Available: {{ isAvailable ? product.availableAmount : 'Not Available' }}</p>
+                <p>*Min order amount: {{ product.minOrderAmount }}</p>
+            </div>
+            <div class="description">
+                <div class="quantity-label">
+                    <p>Quantity</p>
+                </div>
+                <div class="quantity-section">
+                    <button @click="validateInput(--quantity, props.product.availableAmount, product.minOrderAmount)">
+                        <i class="minus icon"></i>
+                    </button>
+                    <div class="ui input" style="width: 50%;">
+                        <input type="text" placeholder="Quantity..." :disabled="!isAvailable" v-model="quantity"
+                            :min="product.minOrderAmount" :max="product.availableAmount" aria-describedby="username-help"
+                            @input="validateInput(quantity, props.product.availableAmount, product.minOrderAmount)">
+                    </div>
+                    <button @click="validateInput(++quantity, props.product.availableAmount, product.minOrderAmount)"
+                        class="ui icon button right floated">
+                        <i class="plus icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="extra content footer">
+            <div>
+                <button @click="handleAddToCart" class="ui button" :class="{ 'disabled': error || !isAvailable }">
+                    <i class="cart icon"></i>
+                    Add Cart
+                </button>
+            </div>
+            <div class="flex-1"></div>
+            <div>
+                <h3>
+                    Total: ${{ calculateBulkProductPrice }}
+                </h3>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue'
 import { useCartStore } from '../store/cart';
 import { useInputValidation } from '../composable/useInputValidation'
-import Card from 'primevue/card'
-import Button from 'primevue/button'
-import InputText from 'primevue/inputtext'
 
 const { error, validateInput } = useInputValidation()
 const cartStore = useCartStore();
@@ -52,16 +78,32 @@ const isAvailable = computed(() => {
     return false;
 })
 
+const calculateBulkProductPrice = computed(() => {
+    if (error.value) return '-'
+    return Number(quantity.value) * Number(props.product.price)
+})
+
 </script>
 
 <style scoped>
-.card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 img {
     height: 150px !important;
+}
+
+.quantity-label {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.quantity-section {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 </style>
