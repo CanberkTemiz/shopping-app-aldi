@@ -1,11 +1,11 @@
 <template>
   <header>
     <div class="ui fluid two item menu">
-      <RouterLink class="item active" to="/products">
+      <RouterLink class="item" active-class="active" to="/products">
         <i class="dolly icon"></i>
         Products
       </RouterLink>
-      <RouterLink class="item" to="/cart">
+      <RouterLink class="item" active-class="active" to="/cart">
         <i class="shopping basket icon"></i>
         Cart
         <span v-if="cartStore.cart.length" class="cart-quantity">{{ cartStore.cart.length }}</span>
