@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 
 export const useCartStore = defineStore({
     id: "cart",
     state: () => ({
       products: [],
       cart: [],
-      notification: false,
       loading: false,
       error: null
     }),
@@ -34,7 +36,7 @@ export const useCartStore = defineStore({
             const foundProduct = this.products.find(p => product.id === p.id)
             foundProduct.availableAmount -= quantity;
 
-            this.notification = true;
+            toast.success('Added to Cart!')
         },
         async fetchProducts() {
             this.loading = true;
