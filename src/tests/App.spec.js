@@ -1,10 +1,7 @@
-import { nextTick } from 'vue';
 import { test, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import App from '../App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import ProductView from '../views/ProductView.vue'
-import CartView from '../views/CartView.vue'
 
 import ProductItem from '../components/ProductItem.vue'
 import {useCartStore} from '../store/cart.js'

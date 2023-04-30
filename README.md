@@ -2,7 +2,7 @@
 
 This is a simple shopping app built using Vue3, Vite and Composition API. 
 The app feauteres a shopping cart where users can add products and list.
-It also includes a procuts view that displays a list of avaible products
+It also includes a products view that displays a list of avaible products
 
 ## Features
 - Vue 3 with Composition API
@@ -11,34 +11,33 @@ It also includes a procuts view that displays a list of avaible products
 - Vue Router for routing
 - Vue Toastification for toasts and notifications
 
-## Core Functionality
-
-1. **Product and Cart Pages**: The app has two main pages, `/products` and `/cart`.
-2. **Product Page**: The Product page lists all products and their information, and enables adding each individual product to the cart in various amounts, respecting the `minOrderAmount`.
-   - When a product is added to the cart, its available amount is decremented by the amount added. Adding more than the total amount is not possible.
-3. **Cart Page**: The Cart page displays the products added to the cart, including the total amount currently added and the total price.
-
 ## Prerequisites
 
-- Node.js 14.x or later
-- npm 7.x or later
+- Node.js 14.18.x or later (some packages require at least 14.18.x, but it's recommended to use the latest LTS version)
+- npm 8.x or later
 
-## IDE Setup
-
-We recommend using [VSCode](https://code.visualstudio.com/) with the following extensions:
-
-- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (disable Vetur)
-- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
-
-## Installation
+## Getting Started
 
 To install the required dependencies, run the following command in the project directory:
+### Clone the repository
+
+```sh
+git clone https://github.com/your-username/shopping-app-aldi.git
+```
+
+### Change to the project directory
+
+```sh
+cd shopping-app-aldi
+```
+
+### Install the required dependencies
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Start the development server
 
 ```sh
 npm run dev
@@ -54,6 +53,12 @@ npm run build
 
 ```sh
 npm run lint
+```
+
+### Run Unit Tests with Vitest
+
+```sh
+npm run test:unit
 ```
 ## Folder Structure
 
