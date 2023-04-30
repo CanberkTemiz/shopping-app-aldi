@@ -9,12 +9,33 @@ import CartView from '../views/CartView.vue'
 import ProductItem from '../components/ProductItem.vue'
 import {useCartStore} from '../store/cart.js'
 import { createPinia } from 'pinia';
-
-const routes = [
-  { path: '/', redirect: '/products' },
-  { path: '/products', component: ProductView },
-  { path: '/cart', component: CartView },
+// Sample product data
+const sampleProducts = [
+  {
+    id: 1,
+    name: 'Product 1',
+    price: 100,
+    availableAmount: 10,
+    minOrderAmount: 1,
+  },
+  {
+    id: 2,
+    name: 'Product 2',
+    price: 200,
+    availableAmount: 5,
+    minOrderAmount: 2,
+  },
 ];
+
+// Replace fetchProducts function in useCartStore to return sampleProducts
+const storeWithMockedFetchProducts = () => {
+  const store = useCartStore();
+  store.fetchProducts = async () => {
+    store.products = sampleProducts;
+  };
+  return store;
+};
+
 
 // Custom function to create a test wrapper
 function createTestWrapper(component, props) {
@@ -29,10 +50,7 @@ function createTestWrapper(component, props) {
   return { wrapper, router };
 }
 
-
-
 test('renders two navigation menu items', async () => {
-  // const wrapper = mount(App, { global: { plugins: [router, pinia] } });
   const { wrapper, router } = createTestWrapper(App, [])
   await router.isReady();
 
@@ -57,4 +75,32 @@ test('adds an element to the cart when clicking "Add Cart"', async () => {
   const cartStore = useCartStore();
 
   expect(cartStore.cart).toHaveLength(1);
+});
+
+test('fetches products', async () => {
+  const cartStore = storeWithMockedFetchProducts();
+
+  expect(cartStore.loading).toBe(false);
+  expect(cartStore.products).toHaveLength(0);
+
+  await cartStore.fetchProducts();
+
+  expect(cartStore.loading).toBe(false);
+  expect(cartStore.products).toHaveLength(sampleProducts.length);
+});
+
+test('adds a product to the cart', async () => {
+  const cartStore = storeWithMockedFetchProducts();
+
+  // Fetch products first
+  await cartStore.fetchProducts();
+
+  const product = cartStore.products[0];
+  const initialCartLength = cartStore.cart.length;
+
+  // Add product to cart
+  cartStore.addToCart(product, product.minOrderAmount);
+  expect(cartStore.cart).toHaveLength(initialCartLength + 1);
+  expect(Number(cartStore.cart[0].id)).toBe(product.id);
+  expect(cartStore.cart[0].quantity).toBe(product.minOrderAmount);
 });
