@@ -15,7 +15,7 @@ export const useInputValidation = () => {
         }
 
         if(inputValue < minOrderAmount) {
-            error.value = 'Cannot be less than the minimum order amount'
+            error.value = 'Cannot be less than the minimum order'
         }
 
         if(inputValue > availableAmount) {

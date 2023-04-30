@@ -31,6 +31,10 @@
                         <i class="plus icon"></i>
                     </button>
                 </div>
+                <div class="quantity-error" :class="{ visible: error }">
+                    <i class="info icon"></i>
+                    <p>{{ error }}</p>
+                </div>
             </div>
         </div>
         <div class="extra content footer">
@@ -101,6 +105,20 @@ img {
     display: flex;
     justify-content: space-evenly;
 }
+
+.quantity-error {
+    display: flex;
+    justify-content: center;
+    margin-top: 9px;
+    height: 20px;
+    color: red;
+    visibility: hidden;
+}
+
+.quantity-error.visible {
+    visibility: visible;
+}
+
 
 .footer {
     display: flex;
