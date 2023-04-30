@@ -18,7 +18,7 @@ It also includes a products view that displays a list of avaible products
 When a product is added to the cart, its available amount is decremented by the amount added. Adding more than the total amount is not possible.
 - Cart Page: The Cart page displays the products added to the cart, including the total amount currently added and the total price.
 
-## Prerequisites
+## 📋 Prerequisites
 
 - Node.js 14.18.x or later (some packages require at least 14.18.x, but it's recommended to use the latest LTS version)
 - npm 8.x or later
