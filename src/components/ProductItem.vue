@@ -17,9 +17,9 @@
                 <div class="quantity-label">
                     <p>Quantity</p>
                 </div>
-                <div class="quantity-section">
+                <div class="quantity-section" aria-readonly="true">
                     <button @click="validateInput(--quantity, props.product.availableAmount, product.minOrderAmount)"
-                        class="ui icon button">
+                        :disabled="!isAvailable" class="ui icon button">
                         <i class="minus icon"></i>
                     </button>
                     <div class="ui input" style="width: 50%;">
@@ -28,7 +28,7 @@
                             @input="validateInput(quantity, props.product.availableAmount, product.minOrderAmount)">
                     </div>
                     <button @click="validateInput(++quantity, props.product.availableAmount, product.minOrderAmount)"
-                        class="ui icon button right floated">
+                        :disabled="!isAvailable" class="ui icon button right floated">
                         <i class="plus icon"></i>
                     </button>
                 </div>
