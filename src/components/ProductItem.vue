@@ -18,7 +18,8 @@
                     <p>Quantity</p>
                 </div>
                 <div class="quantity-section">
-                    <button @click="validateInput(--quantity, props.product.availableAmount, product.minOrderAmount)">
+                    <button @click="validateInput(--quantity, props.product.availableAmount, product.minOrderAmount)"
+                        class="ui icon button">
                         <i class="minus icon"></i>
                     </button>
                     <div class="ui input" style="width: 50%;">

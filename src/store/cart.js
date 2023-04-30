@@ -8,8 +8,7 @@ export const useCartStore = defineStore({
     state: () => ({
       products: [],
       cart: [],
-      loading: false,
-      error: null
+      loading: false
     }),
     getters: {
         getTotalAmount() {
@@ -43,7 +42,7 @@ export const useCartStore = defineStore({
                     if(!response) throw new Error('Error fetching data')
                     this.products = await response.json();
                 } catch(err) {
-                    this.error = err.message
+                    toast.error('Failed during fething products')
                 } finally {
                     this.loading = false
                 }
