@@ -12,6 +12,11 @@ It also includes a products view that displays a list of avaible products
 - Vue Toastification for toasts and notifications
 - Vitest for the testing
 
+## ⚙️ Core Functionality
+- Product and Cart Pages: The app has two main pages, /products and /cart.
+- Product Page: The Product page lists all products and their information, and enables adding each individual product to the cart in various amounts, respecting the minOrderAmount.
+When a product is added to the cart, its available amount is decremented by the amount added. Adding more than the total amount is not possible.
+- Cart Page: The Cart page displays the products added to the cart, including the total amount currently added and the total price.
 
 ## Prerequisites
 
@@ -20,7 +25,7 @@ It also includes a products view that displays a list of avaible products
 
 ## 🛠️ Installation
 
-### 1.Clone the repository
+### Clone the repository
 
 ```sh
 git clone https://github.com/yourusername/shopping-app-aldi.git
