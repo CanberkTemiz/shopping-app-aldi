@@ -28,7 +28,7 @@ When a product is added to the cart, its available amount is decremented by the 
 ### Clone the repository
 
 ```sh
-git clone https://github.com/yourusername/shopping-app-aldi.git
+git clone https://github.com/CanberkTemiz/shopping-app-aldi
 ```
 
 ### Change to the project directory
