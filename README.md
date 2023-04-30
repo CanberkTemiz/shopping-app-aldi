@@ -4,25 +4,26 @@ This is a simple shopping app built using Vue3, Vite and Composition API.
 The app feauteres a shopping cart where users can add products and list.
 It also includes a products view that displays a list of avaible products
 
-## Features
+## 🚀 Features
 - Vue 3 with Composition API
 - Vite for development and building
 - Pinia for state management
 - Vue Router for routing
 - Vue Toastification for toasts and notifications
+- Vitest for the testing
+
 
 ## Prerequisites
 
 - Node.js 14.18.x or later (some packages require at least 14.18.x, but it's recommended to use the latest LTS version)
 - npm 8.x or later
 
-## Getting Started
+## 🛠️ Installation
 
-To install the required dependencies, run the following command in the project directory:
-### Clone the repository
+### 1.Clone the repository
 
 ```sh
-git clone https://github.com/your-username/shopping-app-aldi.git
+git clone https://github.com/yourusername/shopping-app-aldi.git
 ```
 
 ### Change to the project directory
@@ -37,22 +38,17 @@ cd shopping-app-aldi
 npm install
 ```
 
-### Start the development server
+### 🎮 Usage
+### Running the Development Server
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Building for Production
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
 
 ### Run Unit Tests with Vitest
