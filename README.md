@@ -18,15 +18,21 @@ It also includes a procuts view that displays a list of avaible products
    - When a product is added to the cart, its available amount is decremented by the amount added. Adding more than the total amount is not possible.
 3. **Cart Page**: The Cart page displays the products added to the cart, including the total amount currently added and the total price.
 
-## Recommended IDE Setup
+## Prerequisites
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Node.js 14.x or later
+- npm 7.x or later
 
-## Customize configuration
+## IDE Setup
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+We recommend using [VSCode](https://code.visualstudio.com/) with the following extensions:
 
-## Project Setup
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (disable Vetur)
+- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
+
+## Installation
+
+To install the required dependencies, run the following command in the project directory:
 
 ```sh
 npm install
