@@ -40,7 +40,7 @@
         </div>
         <div class="extra content footer">
             <div>
-                <button @click="handleAddToCart" class="ui button" :class="{ 'disabled': error || !isAvailable }">
+                <button @click="handleAddToCart" class="ui button myButton" :class="{ 'disabled': error || !isAvailable }">
                     <i class="cart icon"></i>
                     Add Cart
                 </button>

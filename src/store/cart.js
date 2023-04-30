@@ -30,7 +30,10 @@ export const useCartStore = defineStore({
             }
 
             const foundProduct = this.products.find(p => product.id === p.id)
-            foundProduct.availableAmount -= quantity;
+            if(foundProduct) {
+                foundProduct.availableAmount -= quantity;
+            }
+            
 
             toast.success('Added to Cart!')
         },
